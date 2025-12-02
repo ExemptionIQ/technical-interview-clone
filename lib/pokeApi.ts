@@ -12,43 +12,32 @@ const PAGE_SIZE = 12;
 export const POKEMON_PAGE_SIZE = PAGE_SIZE;
 
 export async function fetchPokemonPage(page) {
-  const offset = (page - 1) * PAGE_SIZE;
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${PAGE_SIZE}`,
-  );
-  if (!response.ok) {
-    throw new Error("Unable to load Pokemon. Please try again.");
-  }
-  const data = await response.json();
-  return data.results ?? [];
+  /*
+   * TODO:
+   * - Accept a page number and calculate offset/limit using PAGE_SIZE.
+   * - Call the public PokeAPI list endpoint with that pagination.
+   * - Handle non-OK responses with a thrown error.
+   * - Parse the JSON, and return the results array (or an empty array) for further mapping.
+   */
 }
 
 export function mapPokemon(detail) {
-  const stats = STAT_ORDER.map((key) => {
-    const stat = detail.stats.find((item) => item.stat.name === key);
-    return {
-      name: key,
-      value: stat?.base_stat ?? 0,
-    };
-  });
-
-  const total = stats.reduce((sum, stat) => sum + stat.value, 0);
-
-  return {
-    id: detail.id,
-    name: detail.name,
-    image:
-      detail.sprites?.other?.["official-artwork"]?.front_default ??
-      detail.sprites?.front_default ??
-      "",
-    types: detail.types?.map((type) => type.type.name) ?? [],
-    stats,
-    total,
-  };
+  /*
+   * TODO:
+   * - Validate the shape of the incoming detail payload
+   * - Map stats in STAT_ORDER into objects with name/value pairs (use 0 when missing).
+   * - Compute the total by summing mapped stat values.
+   * - Derive a display image
+   * - Return a normalized object with id, name, image, types array, stats array, and total.
+   */
 }
 
 export function formatName(name) {
-  return name.charAt(0).toUpperCase() + name.slice(1);
+  /*
+   * TODO:
+   * - Normalize a Pokemon name for display (e.g., capitalize first letter).
+   * - Handle edge cases like empty/undefined input gracefully.
+   */
 }
 
 export const ALL_STAT_KEYS = [...STAT_ORDER];

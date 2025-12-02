@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
-import { POKEMON_PAGE_SIZE, formatName } from "@/lib/pokeApi";
+import { useEffect, useState } from "react";
+import { POKEMON_PAGE_SIZE, formatName, fetchPokemonPage } from "@/lib/pokeApi";
 
 export function PokemonBrowser() {
   const [page, setPage] = useState(1);
@@ -9,38 +9,9 @@ export function PokemonBrowser() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let active = true;
-    const load = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const offset = (page - 1) * POKEMON_PAGE_SIZE;
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${POKEMON_PAGE_SIZE}`
-        );
-        await response.json();
-      } catch (err) {
-        if (active) {
-          setError((err as Error).message);
-        }
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
-      }
-    };
-
-    void load();
-    return () => {
-      active = false;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // TODO: Hook this up to fetch data and update loading/error/pokemon state.
+    fetchPokemonPage(page);
   }, []);
-
-  const cards = useMemo(
-    () => pokemon.map((entry) => ({ ...entry })),
-    [pokemon]
-  );
 
   return (
     <section className="panel gap-4">
@@ -75,7 +46,7 @@ export function PokemonBrowser() {
           ? Array.from({ length: 6 }).map((_, idx) => (
               <SkeletonCard key={`skeleton-${idx}`} />
             ))
-          : cards.map((entry) => (
+          : pokemon.map((entry) => (
               <article key={entry.id} className="card">
                 <div className="flex items-start justify-between">
                   <div>
