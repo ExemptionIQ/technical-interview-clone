@@ -46,7 +46,6 @@ export function PokemonBrowser() {
     <section className="panel gap-4">
       <header className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="eyebrow">Phase 1 · Fetch & Troubleshoot</p>
           <h2 className="text-2xl font-semibold text-surface-900">
             Browse Pokemon
           </h2>
