@@ -1,5 +1,3 @@
-"use client";
-
 import { PokemonBrowser } from "@/components/PokemonBrowser";
 
 export default function Home() {

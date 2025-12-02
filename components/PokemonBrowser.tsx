@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { POKEMON_PAGE_SIZE, formatName } from "@/lib/pokeApi";
@@ -18,7 +16,7 @@ export function PokemonBrowser() {
       try {
         const offset = (page - 1) * POKEMON_PAGE_SIZE;
         const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${POKEMON_PAGE_SIZE}`,
+          `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${POKEMON_PAGE_SIZE}`
         );
         await response.json();
       } catch (err) {
@@ -41,7 +39,7 @@ export function PokemonBrowser() {
 
   const cards = useMemo(
     () => pokemon.map((entry) => ({ ...entry })),
-    [pokemon],
+    [pokemon]
   );
 
   return (
