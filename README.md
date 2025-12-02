@@ -17,14 +17,14 @@ npm run dev
 - `npm run start` — run the built app
 
 ## Custom style references (cheat sheet)
-Use these shared classes/tokens to keep styling consistent:
-- Containers: `page-shell`, `hero`, `panel`, `card`
-- Layout helpers: `responsive-grid`, `table-scroll`
-- Typography accents: `eyebrow`, text utility colors `text-surface-*`
-- Buttons: `btn`, `btn-primary`, `btn-ghost`, `btn-link`
-- Chips: `pill`, `pill-soft`, `pill-outline`, `pill-primary`
-- Inputs: `input` (focus ring + rounding baked in)
-- Surfaces/colors: CSS vars `--color-surface-*`, `--color-primary`, background gradients in `body`
+Use these shared classes/tokens to keep styling consistent and avoid ad-hoc CSS:
+- Containers: `hero` (top-of-page, gradient intro), `panel` (primary card for sections), `card` (small nested items like Pokemon or stats)
+- Layout helpers: `responsive-grid` (auto-fit columns for cards), `table-scroll` (wrap tables to allow horizontal scroll on small screens)
+- Typography accents: `eyebrow` (tiny all-caps label above headings), text utilities `text-surface-*` for consistent color ramps
+- Buttons: base `btn` plus variants `btn-primary` (high emphasis), `btn-ghost` (low emphasis), `btn-link` (inline actions)
+- Chips: `pill`, `pill-soft` (primary background), `pill-outline` (subtle), `pill-primary` (use on hero/actions)
+- Inputs: `input` (rounded, focus ring, default padding)
+- Surfaces/colors: CSS vars `--color-surface-*`, `--color-primary` and the gradient `body` background; lean on these instead of hardcoded hex values
 
 ### Quick rendered-style examples
 These snippets show how the classes look when applied:
