@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { POKEMON_PAGE_SIZE, formatName, fetchPokemonPage } from "@/lib/pokeApi";
 
 export function PokemonBrowser() {
-  const [page, setPage] = useState(1);
-  const [pokemon, setPokemon] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState<any>(1);
+  const [pokemon, setPokemon] = useState<any>([]);
+  const [loading, setLoading] = useState<any>(true);
+  const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     // TODO: Hook this up to fetch data and update loading/error/pokemon state.
@@ -46,13 +46,13 @@ export function PokemonBrowser() {
           ? Array.from({ length: 6 }).map((_, idx) => (
               <SkeletonCard key={`skeleton-${idx}`} />
             ))
-          : pokemon.map((entry) => (
+          : pokemon.map((entry: any) => (
               <article key={entry.id} className="card">
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="eyebrow">#{entry.id}</p>
                     <h3 className="text-lg font-semibold text-surface-900">
-                      {formatName(entry.name)}
+                      {formatName(entry.name) as any}
                     </h3>
                   </div>
                   {entry.image ? (
@@ -71,15 +71,15 @@ export function PokemonBrowser() {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {entry.types.map((type) => (
+                  {entry.types.map((type: any) => (
                     <span key={type} className="pill pill-soft">
-                      {formatName(type)}
+                      {formatName(type) as any}
                     </span>
                   ))}
                 </div>
 
                 <dl className="grid grid-cols-3 gap-2 text-xs text-surface-600">
-                  {entry.stats.map((stat) => (
+                  {entry.stats.map((stat: any) => (
                     <div
                       key={stat.name}
                       className="rounded-md bg-surface-50 px-2 py-2"
@@ -109,7 +109,7 @@ export function PokemonBrowser() {
           type="button"
           className="btn btn-ghost"
           disabled={page === 1 || loading}
-          onClick={() => setPage((current) => Math.max(1, current - 1))}
+          onClick={() => setPage((current: any) => Math.max(1, current - 1))}
         >
           Previous page
         </button>
@@ -117,7 +117,7 @@ export function PokemonBrowser() {
           type="button"
           className="btn btn-ghost"
           disabled={loading}
-          onClick={() => setPage((current) => current + 1)}
+          onClick={() => setPage((current: any) => current + 1)}
         >
           Next page
         </button>

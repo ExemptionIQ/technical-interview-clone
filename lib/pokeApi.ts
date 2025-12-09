@@ -11,7 +11,7 @@ const PAGE_SIZE = 12;
 
 export const POKEMON_PAGE_SIZE = PAGE_SIZE;
 
-export async function fetchPokemonPage(page) {
+export async function fetchPokemonPage(page: any) {
   /*
    * TODO:
    * - Accept a page number and calculate offset/limit using PAGE_SIZE.
@@ -21,7 +21,7 @@ export async function fetchPokemonPage(page) {
    */
 }
 
-export function mapPokemon(detail) {
+export function mapPokemon(detail: any) {
   /*
    * TODO:
    * - Validate the shape of the incoming detail payload
@@ -32,7 +32,7 @@ export function mapPokemon(detail) {
    */
 }
 
-export function formatName(name) {
+export function formatName(name: any) {
   /*
    * TODO:
    * - Normalize a Pokemon name for display (e.g., capitalize first letter).
